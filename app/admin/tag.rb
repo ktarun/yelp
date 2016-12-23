@@ -1,6 +1,6 @@
 ActiveAdmin.register Tag do
 
- permit_params :name
+ permit_params :tag_name_id, :business_id
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

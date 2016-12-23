@@ -2,6 +2,40 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root :to => "businesses#index"
+  # Routes for the Tag resource:
+  # CREATE
+  get "/tags/new", :controller => "tags", :action => "new"
+  post "/create_tag", :controller => "tags", :action => "create"
+
+  # READ
+  get "/tags", :controller => "tags", :action => "index"
+  get "/tags/:id", :controller => "tags", :action => "show"
+
+  # UPDATE
+  get "/tags/:id/edit", :controller => "tags", :action => "edit"
+  post "/update_tag/:id", :controller => "tags", :action => "update"
+
+  # DELETE
+  get "/delete_tag/:id", :controller => "tags", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Tag_name resource:
+  # CREATE
+  get "/tag_names/new", :controller => "tag_names", :action => "new"
+  post "/create_tag_name", :controller => "tag_names", :action => "create"
+
+  # READ
+  get "/tag_names", :controller => "tag_names", :action => "index"
+  get "/tag_names/:id", :controller => "tag_names", :action => "show"
+
+  # UPDATE
+  get "/tag_names/:id/edit", :controller => "tag_names", :action => "edit"
+  post "/update_tag_name/:id", :controller => "tag_names", :action => "update"
+
+  # DELETE
+  get "/delete_tag_name/:id", :controller => "tag_names", :action => "destroy"
+  #------------------------------
+
   # Routes for the Ownership resource:
   # CREATE
   get "/ownerships/new", :controller => "ownerships", :action => "new"
@@ -42,40 +76,6 @@ Rails.application.routes.draw do
   get "/users", :controller => "users", :action => "index"
   get "/users/:id", :controller => "users", :action => "show"
 
-
-  # Routes for the Cuisine resource:
-  # CREATE
-  get "/cuisines/new", :controller => "cuisines", :action => "new"
-  post "/create_cuisine", :controller => "cuisines", :action => "create"
-
-  # READ
-  get "/cuisines", :controller => "cuisines", :action => "index"
-  get "/cuisines/:id", :controller => "cuisines", :action => "show"
-
-  # UPDATE
-  get "/cuisines/:id/edit", :controller => "cuisines", :action => "edit"
-  post "/update_cuisine/:id", :controller => "cuisines", :action => "update"
-
-  # DELETE
-  get "/delete_cuisine/:id", :controller => "cuisines", :action => "destroy"
-  #------------------------------
-
-  # Routes for the Tag resource:
-  # CREATE
-  get "/tags/new", :controller => "tags", :action => "new"
-  post "/create_tag", :controller => "tags", :action => "create"
-
-  # READ
-  get "/tags", :controller => "tags", :action => "index"
-  get "/tags/:id", :controller => "tags", :action => "show"
-
-  # UPDATE
-  get "/tags/:id/edit", :controller => "tags", :action => "edit"
-  post "/update_tag/:id", :controller => "tags", :action => "update"
-
-  # DELETE
-  get "/delete_tag/:id", :controller => "tags", :action => "destroy"
-  #------------------------------
 
   # Routes for the Business resource:
   # CREATE

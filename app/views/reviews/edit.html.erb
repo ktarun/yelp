@@ -36,13 +36,13 @@
         <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="<%= @review.rating %>">
       </div>
 
-      <!-- Label and input for businesses_id -->
+      <!-- Label and input for business_id -->
       <div class="form-group">
-        <label for="businesses_id" class="control-label">
-          Businesses
+        <label for="business_id" class="control-label">
+          Business
         </label>
 
-        <%= select_tag(:businesses_id, options_from_collection_for_select(Business.all, :id, :address, @review.businesses_id), :class => "form-control") %>
+        <%= select_tag(:business_id, options_from_collection_for_select(Business.all, :id, :address, @review.business_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for user_id -->

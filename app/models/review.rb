@@ -5,7 +5,8 @@ class Review < ApplicationRecord
 
   belongs_to :user
 
-  belongs_to :businesses
+  belongs_to :businesses,
+             :foreign_key => "business_id"
 
   # Indirect associations
 

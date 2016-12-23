@@ -11,10 +11,10 @@
       <dt>Rating</dt>
       <dd><%= @review.rating %></dd>
 
-      <dt>Businesses</dt>
+      <dt>Business</dt>
       <dd>
         <% if @review.businesses.present? %>
-          <a href="/businesses/<%= @review.businesses_id %>">
+          <a href="/businesses/<%= @review.business_id %>">
             <%= @review.businesses.address %>
           </a>
         <% end %>

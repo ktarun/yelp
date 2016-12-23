@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1>
+    Tag names
+    <a href="/tag_names/new" class="btn btn-lg btn-success">New Tag name</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @tag_names.each do |tag_name| %>
+      <tr>
+        <td><%= tag_name.name %></td>
+        <td>
+          <a href="/tag_names/<%= tag_name.id %>" class="btn btn-primary">Show</a>
+          <a href="/tag_names/<%= tag_name.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_tag_name/<%= tag_name.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+    <%= paginate @tag_names, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>
