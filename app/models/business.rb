@@ -13,6 +13,10 @@ class Business < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :tags,
+             :through => :cuisines,
+             :source => :tag
+
   # Validations
 
 end
