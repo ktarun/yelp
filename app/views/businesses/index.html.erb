@@ -25,7 +25,7 @@
         <td><%= business.description %></td>
         <td><%= business.website %></td>
         <td><%= business.cover_photo %></td>
-        <td><%= business.ownership_id %></td>
+        <td><%= business.ownership.user_id %></td>
         <td>
           <a href="/businesses/<%= business.id %>" class="btn btn-primary">Show</a>
           <a href="/businesses/<%= business.id %>/edit" class="btn btn-warning">Edit</a>
