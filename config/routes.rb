@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "businesses#index"
   # Routes for the Ownership resource:
   # CREATE
   get "/ownerships/new", :controller => "ownerships", :action => "new"
