@@ -13,6 +13,10 @@ class Business < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :user,
+             :through => :ownership,
+             :source => :user
+
   has_many   :tags,
              :through => :cuisines,
              :source => :tag
