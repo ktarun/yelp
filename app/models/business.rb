@@ -1,6 +1,10 @@
 class Business < ApplicationRecord
   # Direct associations
 
+  has_many   :reviews,
+             :foreign_key => "businesses_id",
+             :dependent => :destroy
+
   has_many   :cuisines,
              :foreign_key => "businesses_id",
              :dependent => :destroy
