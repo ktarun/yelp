@@ -6,6 +6,8 @@ class BusinessesController < ApplicationController
   end
 
   def show
+    @review = Review.new
+    @cuisine = Cuisine.new
     @business = Business.find(params[:id])
 
     render("businesses/show.html.erb")
