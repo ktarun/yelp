@@ -16,8 +16,20 @@
 
       <% @cuisines.each do |cuisine| %>
       <tr>
-        <td><%= cuisine.tag.name %></td>
-        <td><%= cuisine.businesses.address %></td>
+        <td>
+          <% if cuisine.tag.present? %>
+            <a href="/tags/<%= cuisine.tag.id %>">
+              <%= cuisine.tag.name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if cuisine.businesses.present? %>
+            <a href="/businesses/<%= cuisine.businesses.id %>">
+              <%= cuisine.businesses.address %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/cuisines/<%= cuisine.id %>" class="btn btn-primary">Show</a>
           <a href="/cuisines/<%= cuisine.id %>/edit" class="btn btn-warning">Edit</a>

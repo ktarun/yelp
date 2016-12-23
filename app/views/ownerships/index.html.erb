@@ -16,7 +16,13 @@
 
       <% @ownerships.each do |ownership| %>
       <tr>
-        <td><%= ownership.user.name %></td>
+        <td>
+          <% if ownership.user.present? %>
+            <a href="/users/<%= ownership.user.id %>">
+              <%= ownership.user.name %>
+            </a>
+          <% end %>
+        </td>
         <td><%= ownership.businesses_id %></td>
         <td>
           <a href="/ownerships/<%= ownership.id %>" class="btn btn-primary">Show</a>

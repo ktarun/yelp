@@ -12,10 +12,22 @@
       <dd><%= @review.rating %></dd>
 
       <dt>Businesses</dt>
-      <dd><%= @review.businesses_id %></dd>
+      <dd>
+        <% if @review.businesses.present? %>
+          <a href="/businesses/<%= @review.businesses_id %>">
+            <%= @review.businesses.address %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>User</dt>
-      <dd><%= @review.user_id %></dd>
+      <dd>
+        <% if @review.user.present? %>
+          <a href="/users/<%= @review.user_id %>">
+            <%= @review.user.name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Photo</dt>
       <dd><img src="<%= @review.photo %>" class="img-responsive"></dd>

@@ -21,8 +21,20 @@
       <tr>
         <td><%= review.comment %></td>
         <td><%= review.rating %></td>
-        <td><%= review.businesses.address %></td>
-        <td><%= review.user.name %></td>
+        <td>
+          <% if review.businesses.present? %>
+            <a href="/businesses/<%= review.businesses.id %>">
+              <%= review.businesses.address %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if review.user.present? %>
+            <a href="/users/<%= review.user.id %>">
+              <%= review.user.name %>
+            </a>
+          <% end %>
+        </td>
         <td><img src='<%= review.photo %>' class='img-responsive'></td>
         <td>
           <a href="/reviews/<%= review.id %>" class="btn btn-primary">Show</a>

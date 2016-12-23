@@ -34,7 +34,13 @@
         <td><%= business.description %></td>
         <td><%= business.website %></td>
         <td><img src='<%= business.cover_photo %>' class='img-responsive'></td>
-        <td><%= business.ownership.user_id %></td>
+        <td>
+          <% if business.ownership.present? %>
+            <a href="/ownerships/<%= business.ownership.id %>">
+              <%= business.ownership.user_id %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/businesses/<%= business.id %>" class="btn btn-primary">Show</a>
           <a href="/businesses/<%= business.id %>/edit" class="btn btn-warning">Edit</a>
