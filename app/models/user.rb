@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :owners,
+             :class_name => "Ownership",
+             :dependent => :destroy
+
   has_many   :reviews,
              :dependent => :destroy
 
