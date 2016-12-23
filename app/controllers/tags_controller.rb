@@ -1,13 +1,12 @@
 class TagsController < ApplicationController
   def index
     @q = Tag.ransack(params[:q])
-    @tags = @q.result(:distinct => true).includes(:cuisines, :businesses).page(params[:page]).per(10)
+    @tags = @q.result(:distinct => true).includes(:business, :tag_name).page(params[:page]).per(10)
 
     render("tags/index.html.erb")
   end
 
   def show
-    @cuisine = Cuisine.new
     @tag = Tag.find(params[:id])
 
     render("tags/show.html.erb")
@@ -22,7 +21,8 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new
 
-    @tag.name = params[:name]
+    @tag.tag_name_id = params[:tag_name_id]
+    @tag.business_id = params[:business_id]
 
     save_status = @tag.save
 
@@ -49,7 +49,8 @@ class TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id])
 
-    @tag.name = params[:name]
+    @tag.tag_name_id = params[:tag_name_id]
+    @tag.business_id = params[:business_id]
 
     save_status = @tag.save
 

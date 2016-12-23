@@ -5,8 +5,23 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @tag.name %></dd>
+      <dt>Tag name</dt>
+      <dd>
+        <% if @tag.tag_name.present? %>
+          <a href="/tag_names/<%= @tag.tag_name_id %>">
+            <%= @tag.tag_name.name %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Business</dt>
+      <dd>
+        <% if @tag.business.present? %>
+          <a href="/businesses/<%= @tag.business_id %>">
+            <%= @tag.business.address %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 
@@ -21,90 +36,5 @@
         Delete
       </a>
     </div>
-  </div>
-</div>
-
-<!-- A Tag has many cuisines -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Cuisines
-      </li>
-
-      <% @tag.cuisines.each do |cuisine| %>
-        <li class="list-group-item">
-          <a href="/cuisines/<%= cuisine.id %>">
-            <%= cuisine.tag_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/cuisines/<%= cuisine.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/cuisines/<%= cuisine.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_cuisine/<%= cuisine.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-
-      <li class="list-group-item">
-        <form action="/create_cuisine" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for tag_id -->
-      <input type="hidden" name="tag_id" value="<%= @tag.id %>">
-
-      <!-- Label and input for businesses_id -->
-      <div class="form-group">
-        <label for="businesses_id" class="control-label">
-          Businesses
-        </label>
-
-        <%= select_tag(:businesses_id, options_from_collection_for_select(Business.all, :id, :address), :class => "form-control") %>
-      </div>
-
-      <button class="btn btn-block btn-success">
-        Create Cuisine
-      </button>
-    </form>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<!-- A Tag has many businesses -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Businesses
-      </li>
-
-      <% @tag.businesses.each do |business| %>
-        <li class="list-group-item">
-          <a href="/businesses/<%= business.id %>">
-            <%= business.address %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/businesses/<%= business.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/businesses/<%= business.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_business/<%= business.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-    </ul>
   </div>
 </div>

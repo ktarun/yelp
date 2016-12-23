@@ -1,0 +1,116 @@
+<div class="page-header">
+  <h3>Tag Name #<%= @tag_name.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Name</dt>
+      <dd><%= @tag_name.name %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/tag_names" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/tag_names/<%= @tag_name.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_tag_name/<%= @tag_name.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Tag name has many tags -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Tags
+      </li>
+
+      <% @tag_name.tags.each do |tag| %>
+        <li class="list-group-item">
+          <a href="/tags/<%= tag.id %>">
+            <%= tag.tag_name_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/tags/<%= tag.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/tags/<%= tag.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_tag/<%= tag.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_tag" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for tag_name_id -->
+      <div class="form-group">
+        <label for="tag_name_id" class="control-label">
+          Tag name
+        </label>
+
+        <%= select_tag(:tag_name_id, options_from_collection_for_select(TagName.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for business_id -->
+      <div class="form-group">
+        <label for="business_id" class="control-label">
+          Business
+        </label>
+
+        <%= select_tag(:business_id, options_from_collection_for_select(Business.all, :id, :address), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Tag
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Tag name has many businesses -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Businesses
+      </li>
+
+      <% @tag_name.businesses.each do |business| %>
+        <li class="list-group-item">
+          <a href="/businesses/<%= business.id %>">
+            <%= business.address %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/businesses/<%= business.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/businesses/<%= business.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_business/<%= business.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

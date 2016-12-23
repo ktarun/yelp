@@ -1,6 +1,6 @@
-ActiveAdmin.register Cuisine do
+ActiveAdmin.register TagName do
 
- permit_params :tag_id, :businesses_id
+ permit_params :name
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

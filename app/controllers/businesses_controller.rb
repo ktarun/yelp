@@ -1,7 +1,7 @@
 class BusinessesController < ApplicationController
   def index
     @q = Business.ransack(params[:q])
-    @businesses = @q.result(:distinct => true).includes(:cuisines, :reviews, :ownership, :tags, :user).page(params[:page]).per(10)
+    @businesses = @q.result(:distinct => true).includes(:reviews, :tags, :ownership, :user, :tag_names).page(params[:page]).per(10)
     @location_hash = Gmaps4rails.build_markers(@businesses.where.not(:address_latitude => nil)) do |business, marker|
       marker.lat business.address_latitude
       marker.lng business.address_longitude
@@ -12,8 +12,8 @@ class BusinessesController < ApplicationController
   end
 
   def show
+    @tag = Tag.new
     @review = Review.new
-    @cuisine = Cuisine.new
     @business = Business.find(params[:id])
 
     render("businesses/show.html.erb")

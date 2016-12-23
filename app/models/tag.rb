@@ -1,14 +1,11 @@
 class Tag < ApplicationRecord
   # Direct associations
 
-  has_many   :cuisines,
-             :dependent => :destroy
+  belongs_to :tag_name
+
+  belongs_to :business
 
   # Indirect associations
-
-  has_many   :businesses,
-             :through => :cuisines,
-             :source => :businesses
 
   # Validations
 
