@@ -1,6 +1,7 @@
 class BusinessesController < ApplicationController
   def index
-    @businesses = Business.page(params[:page]).per(10)
+    @q = Business.ransack(params[:q])
+    @businesses = @q.result(:distinct => true).includes(:cuisines, :reviews, :ownership, :tags, :user).page(params[:page]).per(10)
     @location_hash = Gmaps4rails.build_markers(@businesses.where.not(:address_latitude => nil)) do |business, marker|
       marker.lat business.address_latitude
       marker.lng business.address_longitude
